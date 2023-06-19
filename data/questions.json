@@ -1,0 +1,333 @@
+{
+
+    "decisions": [
+  
+      {
+  
+       "id": 0,
+  
+        "true": [1, 21, 26, 22, 231, 232, 233, 234, 24, 25, 27]
+  
+      },
+  
+      {
+  
+        "id": 1,
+  
+        "text": "I have previous work experience and I want to manage people or projects",
+  
+        "true": [12, 131, 132, 133, 134, 135, 141, 142]
+  
+      },
+  
+      {
+  
+        "id": 12,
+  
+        "text": "I like to work with farm animals"
+  
+      },
+  
+      {
+  
+        "id": 131,
+  
+        "text": "I like to communicate"
+  
+      },
+  
+      {
+  
+        "id": 132,
+  
+        "text": "I am interested in business, human resources or marketing"
+  
+      },
+  
+      {
+  
+        "id": 133,
+  
+        "text": "I am interested in construction"
+  
+      },
+  
+      {
+  
+        "id": 134,
+  
+        "text": "I want to lead educational initiatives"
+  
+      },
+  
+      {
+  
+        "id": 135,
+  
+        "text": "I like to work with technology"
+  
+      },
+  
+      {
+  
+        "id": 141,
+  
+        "text": "I like to travel"
+  
+      },
+  
+      {
+  
+        "id": 142,
+  
+        "text": "I am interested in retail"
+  
+      },
+  
+      {
+  
+        "id": 21,
+  
+        "text": "I am a creative and artistic person",
+  
+        "true": [211, 212]
+  
+      },
+  
+      {
+  
+        "id": 22,
+  
+        "text": "I am interested in economy and supporting businesses to succeed",
+  
+        "true": [221, 222, 223, 224, 225]
+  
+      },
+  
+      {
+  
+        "id": 211,
+  
+        "text": "I am an aspiring artist"
+  
+      },
+  
+      {
+  
+        "id": 212,
+  
+        "text": "I am intrigued by working in media"
+  
+      },
+  
+      {
+  
+        "id": 221,
+  
+        "text": "I want to support business success with financial services"
+  
+      },
+  
+      {
+  
+        "id": 222,
+  
+        "text": "I am interested in financial investments, shares and markets"
+  
+      },
+  
+      {
+  
+        "id": 223,
+  
+        "text": "I want to find or train the best people for the job"
+  
+      },
+  
+      {
+  
+        "id": 224,
+  
+        "text": "I like to keep statistics or I store things and catalogue them"
+  
+      },
+  
+      {
+  
+        "id": 225,
+  
+        "text": "I can convince other people about my opinion"
+  
+      },
+  
+      {
+  
+        "id": 231,
+  
+        "text": "I am interested in boats or aeroplanes"
+  
+      },
+  
+      {
+  
+        "id": 232,
+  
+        "text": "I like to design things, clothes or buildings or even raw maps and blueprints"
+  
+      },
+  
+      {
+  
+        "id": 233,
+  
+        "text": "I like to build things, or take things apart and see how they work"
+  
+      },
+  
+      {
+  
+        "id": 234,
+  
+        "text": "Science is my thing!"
+  
+      },
+  
+      {
+  
+        "id": 24,
+  
+        "text": "I want to teach",
+  
+        "true": [241, 242, 249]
+  
+      },
+  
+      {
+  
+        "id": 241,
+  
+        "text": "I like to work with kids and teenagers"
+  
+      },
+  
+      {
+  
+        "id": 242,
+  
+        "text": "I prefer to teach adults"
+  
+      },
+  
+      {
+  
+        "id": 249,
+  
+        "text": "I can teach drama, music, art or languages"
+  
+      },
+  
+      {
+  
+        "id": 25,
+  
+        "text": "I want to help people to stay healthy or address their health issues",
+  
+        "true": [251, 252, 253, 254]
+  
+      },
+  
+      {
+  
+        "id": 251,
+  
+        "text": "I want to support doctors"
+  
+      },
+  
+      {
+  
+        "id": 252,
+  
+        "text": "I feel like I can help people feel better by talking to them"
+  
+      },
+  
+      {
+  
+        "id": 253,
+  
+        "text": "Human anatomy, yes please, blood ... no issue!"
+  
+      },
+  
+      {
+  
+        "id": 254,
+  
+        "text": "Human birth is a miracle, and I want to be a part of it!"
+  
+      },
+  
+      {
+  
+        "id": 26,
+  
+        "text": "I want to work with computers and technology",
+  
+        "true": [261, 262, 263]
+  
+      },
+  
+      {
+  
+        "id": 261,
+  
+        "text": "I want to design or build great apps and websites"
+  
+      },
+  
+      {
+  
+        "id": 262,
+  
+        "text": "Cyber Security is one of the most critical issues of this generation"
+  
+      },
+  
+      {
+  
+        "id": 263,
+  
+        "text": "I want to support technology development and build reliable and fast networks to connect everyone"
+  
+      },
+  
+      {
+  
+        "id": 27,
+  
+        "text": "I want to ensure that everyone is treated equally, legally and with respect",
+  
+        "true": [271, 272]
+  
+      },
+  
+     {
+  
+        "id": 271,
+  
+        "text": "I want to fight for legal justice"
+  
+      },
+  
+      {
+  
+        "id": 272,
+  
+        "text": "I want to help people, take care of their mental health or bring social justice"
+  
+      }
+  
+    ]
+  
+  }
