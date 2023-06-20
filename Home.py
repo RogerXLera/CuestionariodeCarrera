@@ -3,9 +3,7 @@ Roger Lera
 17/04/2023
 """
 import os
-import cvxpy as cp
 import numpy as np
-import argparse as ap
 import time
 import csv
 from definitions import * # classes Skill, Activity, TimePeriod, TimePeriodSequence, Job, User Preference
@@ -49,46 +47,58 @@ def switch_page(page_name: str):
 wd_ = 'data'
 path_ = os.getcwd()
 
-act_file_path = os.path.join(path_,wd_,"activities.csv")
-job_file_path = os.path.join(path_,wd_,"jobs.csv")
-user_file_path = os.path.join(path_,wd_,f"input_pref_def.csv")
+job_file_path = os.path.join(path_,wd_,"anzsco.xlsx")
+q_file_path = os.path.join(path_,wd_,"questions.json")
+
 
 try:
-    A = st.session_state['A']
-    P = st.session_state['P']
     J = st.session_state['J']
-    usp = st.session_state['usp']
-    skills = st.session_state['skills']
-    max_level = st.session_state['max_level']
-    topics = st.session_state['topics']
+    Q = st.session_state['Q']
+    q_id = st.session_state['q_id']
+    q_response = st.session_state['q_response']
+    job_tree = st.session_state['job_tree']
+    
     
 except:
-    A,P,J,usp,skills,max_level,topics = definitions_generation(act_file_path,job_file_path,user_file_path)
+    J = read_jobs_a(job_file_path)
+    Q = read_questions(q_file_path)
+    q_id = 0
+    q_response = 2
+    job_tree = job_tree(J)
+    st.session_state['J'] = J
+    st.session_state['Q'] = Q
+    st.session_state['q_id'] = q_id
+    st.session_state['q_response'] = q_response
+    st.session_state['job_tree'] = job_tree
+
     
 
 st.session_state['survey'] = False #survey not answered
 
 #st.write("# Welcome to the Yoma Learning Pathway Recommender! 👋 :trumpet: :doughnut:")
-st.write("# Welcome to the Yoma Learning Pathway Recommender! 👋 ")
+st.write("# Welcome to the Yoma Career Path Questionnaire! 👋 ")
 
 #st.sidebar.success("Select a demo above.")
 
 st.markdown(
     """
-    This is a demo page to test the Yoma Learning Pathway Recommender. The algorithm aims to plan a course path 
-    according to your preferences. 
+    This is a demo page to test the Yoma Career Path Questionnaire! The algorithm aims to suggest and help you a possible career path 
+    according to your preferences and answers. 
 
     To use the app, follow the next sequence of steps.
 
-        1. Set up your preferences.
-        2. Run the Learning Pathway Recommender.
-        3. Answer the survey. 
+        1. Explore the Career Hierarchy.
+        2. Answer the questionnaire.
+        3. Submit the job suggested. 
     
 """
 )
 
-#link_ = st.button('Go to preferences',on_click=switch_page("Preferences"))
-link_ = st.button('Go to preferences')
+st.markdown(f"Do you know your desired career role?")
+# Display buttons in the same row using columns
+col1, col2 = st.columns(2)
+link_1 = col1.button("No, can you suggest me one?")
+link_2 = col2.button("Yes, let me indicate it in the Job Hierarchy.")
 
 st.markdown(
     """
@@ -96,13 +106,15 @@ st.markdown(
 
     ### Want to learn more about Yoma?
     - Check out [Yoma](https://www.yoma.africa/)
-    - Create your Yoma [profile]()
+    - Create your Yoma [profile](https://app.yoma.africa/)
     - Jump into our [opportunities](https://app.yoma.africa/opportunities) offer. 
 """
 )
 
-if link_:
-    switch_page("Preferences")
+if link_1:
+    switch_page("Questionnaire")
+elif link_2:
+    switch_page("Jobs")
 
     
 
