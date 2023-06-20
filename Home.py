@@ -7,7 +7,8 @@ import numpy as np
 import time
 import csv
 from definitions import * # classes Skill, Activity, TimePeriod, TimePeriodSequence, Job, User Preference
-from read_file import read_activities,skills_enumeration,topics_enumeration,read_jobs,read_input
+from read_file import *
+from questionnaire import *
 import streamlit as st
 
 
@@ -56,20 +57,24 @@ try:
     Q = st.session_state['Q']
     q_id = st.session_state['q_id']
     q_response = st.session_state['q_response']
-    job_tree = st.session_state['job_tree']
+    j_tree = st.session_state['job_tree']
+    q_list = st.session_state['q_list']
     
     
 except:
     J = read_jobs_a(job_file_path)
     Q = read_questions(q_file_path)
-    q_id = 0
+    q_id = 1
     q_response = 2
-    job_tree = job_tree(J)
+    j_tree = job_tree(J)
+    q_list = Q[0].predecesor
+    init_tree(j_tree)
     st.session_state['J'] = J
     st.session_state['Q'] = Q
     st.session_state['q_id'] = q_id
     st.session_state['q_response'] = q_response
-    st.session_state['job_tree'] = job_tree
+    st.session_state['q_list'] = q_list
+    st.session_state['job_tree'] = j_tree
 
     
 
