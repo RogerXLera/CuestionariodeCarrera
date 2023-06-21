@@ -52,20 +52,29 @@ def init_tree(dic):
             st.session_state[f"job_{item}"] = False
     return None
 
-def questionnaire(Q,q_id,question_answer,q_list):
+def questionnaire(Q,q_id,question_answer,q_list,j_list):
 
+    if q_id == None:
+        q_id = q_list[0]
+        return q_id,q_list,j_list
+        
     q_list.remove(q_id)
-    if q_id != 0 and len(q_list) == 0:
-        "I cannot fine a suitable field for you."
-        return None
     
     if question_answer == 2:
-        q_list = Q[q_id].predecesor + q_list
+        if len(Q[q_id].predecesor) == 0:
+            j_list.insert(0,f"{q_id}")
+        q_list = Q[q_id].predecesor.copy() + q_list
     elif question_answer == 1:
-        q_list += Q[q_id].predecesor
+        if len(Q[q_id].predecesor) == 0:
+            j_list.append(f"{q_id}")
+        q_list += Q[q_id].predecesor.copy()
 
+    if len(q_list) == 0:
+        return None,q_list,j_list
+    
     q_id = q_list[0]
-    return q_id
+    print(q_id,q_list,j_list)
+    return q_id,q_list,j_list
 
 if __name__ == '__main__':
     from read_file import *

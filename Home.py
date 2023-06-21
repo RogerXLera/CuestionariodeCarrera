@@ -59,22 +59,26 @@ try:
     q_response = st.session_state['q_response']
     j_tree = st.session_state['job_tree']
     q_list = st.session_state['q_list']
+    j_list = st.session_state['j_list']
     
     
 except:
     J = read_jobs_a(job_file_path)
     Q = read_questions(q_file_path)
     q_id = 1
-    q_response = 2
+    q_response = 0
     j_tree = job_tree(J)
-    q_list = Q[0].predecesor
+    q_list = Q[0].predecesor.copy()
+    j_list = []
     init_tree(j_tree)
     st.session_state['J'] = J
     st.session_state['Q'] = Q
-    st.session_state['q_id'] = q_id
+    st.session_state['q_id'] = 1
     st.session_state['q_response'] = q_response
     st.session_state['q_list'] = q_list
+    st.session_state['j_list'] = j_list
     st.session_state['job_tree'] = j_tree
+
 
     
 
