@@ -54,7 +54,7 @@ except:
     st.session_state['job_tree'] = j_tree
 
 labels_ = ["No","A little","Yes"]
-
+base_link = "https://www.abs.gov.au/statistics/classifications/anzsco-australian-and-new-zealand-standard-classification-occupations/2022/browse-classification/"
 
 if q_id == None:
     if len(j_list) == 0:
@@ -72,13 +72,15 @@ link_2 = col2.button("Explore jobs")
 if q_id == None:
     f"Some of the fields that have been selected according to your answers."
     for i in range(len(j_list)):
-        st.write(f"{i+1}. {J[j_list[i]].name}")
+        link = generate_link(base_link,j_list[i])
+        st.write(f"{i+1}. [{J[j_list[i]].name}]({link})")
     st.session_state['j_list'] = []
 else:
     if len(j_list) >= 3:
         f"Some of the fields that have been selected according to your answers."
         for i in range(3):
-            st.write(f"{i+1}. {J[j_list[i]].name}")
+            link = generate_link(base_link,j_list[i])
+            st.write(f"{i+1}. [{J[j_list[i]].name}]({link})")
 
 
 if link_1:

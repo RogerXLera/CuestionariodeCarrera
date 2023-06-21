@@ -76,6 +76,14 @@ def questionnaire(Q,q_id,question_answer,q_list,j_list):
     print(q_id,q_list,j_list)
     return q_id,q_list,j_list
 
+def generate_link(base_link,id_):
+
+    link = base_link
+    for i in range(len(id_)):
+        link += f"{id_[:i+1]}/"
+
+    return link[:-1]
+
 if __name__ == '__main__':
     from read_file import *
     wd_ = 'data'
