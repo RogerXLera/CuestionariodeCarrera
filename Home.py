@@ -79,7 +79,6 @@ except:
     st.session_state['j_list'] = j_list
     st.session_state['job_tree'] = j_tree
 
-
     
 
 st.session_state['survey'] = False #survey not answered
@@ -96,23 +95,41 @@ st.markdown(
 
     To use the app, follow the next sequence of steps.
 
-        1. Explore the Career Hierarchy.
+        1. Introduce the user name.
         2. Answer the questionnaire.
-        3. Submit the job suggested. 
+        3. Submit the answers of the questionnaire. 
     
 """
 )
 
-st.markdown(f"Do you know your desired career role?")
+if 'username' not in st.session_state.keys():
+    user_name = st.text_input("Introduce Goodwall user name.",
+    value="",key='username',placeholder='john_smith')
+else:
+    st.session_state['username']
+    user_name = st.text_input("Introduce Goodwall user name.",
+    value=st.session_state['username'],key='username')
+
+
+
+#st.markdown(f"Do you know your desired career role?")
 # Display buttons in the same row using columns
-col1, col2 = st.columns(2)
-link_1 = col1.button("No, can you suggest me one?")
-link_2 = col2.button("Yes, let me indicate it in the Job Hierarchy.")
+#col1, col2 = st.columns(2)
+if 'username' not in st.session_state.keys():
+    link_1 = st.button("Go to questionnaire.", disabled=True)
+else:
+    st.session_state['username']
+    link_1 = st.button("Go to questionnaire.",disabled=False)
+
+with st.expander("Why do we need your username?"):
+    st.write("""
+    The username is collected just to validate that there aren't duplicated answers. 
+    You won't receive any messages from this platform. 
+    Once the data is gathered and analysed, all the private information will be deleted. 
+    """)
 
 st.markdown(
     """
-
-
     ### Want to learn more about Yoma?
     - Check out [Yoma](https://www.yoma.africa/)
     - Create your Yoma [profile](https://app.yoma.africa/)
@@ -122,8 +139,8 @@ st.markdown(
 
 if link_1:
     switch_page("Questionnaire")
-elif link_2:
-    switch_page("Jobs")
+#elif link_2:
+    #switch_page("Jobs")
 
     
 
