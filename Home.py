@@ -103,12 +103,15 @@ st.markdown(
 )
 
 if 'username' not in st.session_state.keys():
+    #user_name = st.text_input("Introduce Goodwall user name.",
+    #value="",key='username',placeholder='john_smith')
     user_name = st.text_input("Introduce Goodwall user name.",
-    value="",key='username',placeholder='john_smith')
+    value="",placeholder='john_smith')
 else:
-    st.session_state['username']
+    #user_name = st.text_input("Introduce Goodwall user name.",
+    #value=st.session_state['username'],key='username')
     user_name = st.text_input("Introduce Goodwall user name.",
-    value=st.session_state['username'],key='username')
+    value=st.session_state['username'],placeholder='john_smith')
 
 
 
@@ -117,8 +120,9 @@ else:
 #col1, col2 = st.columns(2)
 if 'username' not in st.session_state.keys():
     link_1 = st.button("Go to questionnaire.", disabled=True)
+elif len(st.session_state['username']) == 0:
+    link_1 = st.button("Go to questionnaire.", disabled=True)
 else:
-    st.session_state['username']
     link_1 = st.button("Go to questionnaire.",disabled=False)
 
 with st.expander("Why do we need your username?"):
@@ -136,6 +140,12 @@ st.markdown(
     - Jump into our [opportunities](https://app.yoma.africa/opportunities) offer. 
 """
 )
+if 'username' not in st.session_state.keys():
+    st.session_state['username'] = user_name
+elif st.session_state['username'] != user_name:
+    st.session_state['username'] = user_name
+    st.experimental_rerun()
+
 
 if link_1:
     switch_page("Questionnaire")

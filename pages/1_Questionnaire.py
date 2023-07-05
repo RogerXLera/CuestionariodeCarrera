@@ -56,50 +56,69 @@ except:
 labels_ = ["No","A little","Yes"]
 base_link = "https://www.abs.gov.au/statistics/classifications/anzsco-australian-and-new-zealand-standard-classification-occupations/2022/browse-classification/"
 
-if q_id == None:
-    if len(j_list) == 0:
-        f"I cannot find any career that you want to pursue. Try again."
 
-    label_button = "Try again"
+if 'username' not in st.session_state.keys():
+    st.write("You must introduce your Goodwall username.")
+    user_name = st.text_input("Introduce Goodwall user name.",
+    value="",placeholder='john_smith')
+    st.session_state['username'] = user_name
+    
+
+elif len(st.session_state['username']) == 0:
+    st.write("You must introduce your Goodwall username.")
+    user_name = st.text_input("Introduce Goodwall user name.",
+    value="",placeholder='john_smith')
+    if st.session_state['username'] != user_name:
+        st.session_state['username'] = user_name
+        st.experimental_rerun()
+
 else:
-    st.radio(Q[q_id].question, range(3), format_func=lambda x: labels_[x], index= 0, key='q_response')
-    label_button = "Next question"
+    st.write(f"User: {st.session_state.username}")
+    if len(q_list) > 0:
+        for q_id in q_list[:3]:
+            st.radio(Q[q_id].question, range(3), format_func=lambda x: labels_[x], index= 0, key=f'q_response_{q_id}')
+                
+        label_button = "Next question"    
+        link_1 = st.button(label_button)
 
-col1, col2 = st.columns(2)
-link_1 = col1.button(label_button)
-link_2 = col2.button("Explore jobs")
-
-if q_id == None:
-    f"Some of the fields that have been selected according to your answers."
-    for i in range(len(j_list)):
-        link = generate_link(base_link,j_list[i])
-        st.write(f"{i+1}. [{J[j_list[i]].name}]({link})")
-    st.session_state['j_list'] = []
-else:
-    if len(j_list) >= 3:
-        f"Some of the fields that have been selected according to your answers."
-        for i in range(3):
+    else:
+        f"The fields selected according to your answers are the following."
+        for i in range(len(j_list)):
             link = generate_link(base_link,j_list[i])
             st.write(f"{i+1}. [{J[j_list[i]].name}]({link})")
+        st.session_state['j_list'] = []
 
+        col1,col2 = st.columns(2)
+        link_1 = False
+        link_2a = col1.button("Try again")
+        link_2b = col2.button("Submit")
 
-if link_1:
-    if q_id == None:
+    if link_1:
+        if q_id == None:
+            st.session_state['q_id'] = 1
+            st.session_state['q_response'] = 0
+            st.session_state['q_list'] = Q[0].predecesor.copy()
+            link_1 = False
+            st.experimental_rerun()
+        
+        q_id,q_list_new,j_list_new = questionnaire(Q,st.session_state['q_id'],st.session_state['q_response'],q_list,j_list)
+        st.session_state['q_id'] = q_id
+        st.session_state['q_list'] = q_list_new
+        st.session_state['j_list'] = j_list_new
+        link_1 = False
+        st.experimental_rerun()
+
+    elif link_2a:
         st.session_state['q_id'] = 1
         st.session_state['q_response'] = 0
         st.session_state['q_list'] = Q[0].predecesor.copy()
         link_1 = False
-        st.experimental_rerun()
-    
-    q_id,q_list_new,j_list_new = questionnaire(Q,st.session_state['q_id'],st.session_state['q_response'],q_list,j_list)
-    st.session_state['q_id'] = q_id
-    st.session_state['q_list'] = q_list_new
-    st.session_state['j_list'] = j_list_new
-    link_1 = False
-    st.experimental_rerun()
+    elif link_2b:
+        submit_results()
 
-elif link_2:
-    switch_page("Jobs")
+
+    #elif link_2:
+        #switch_page("Jobs")
 
 
 
