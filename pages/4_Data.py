@@ -3,7 +3,6 @@ Roger Lera
 20/04/2023
 """
 import os
-import cvxpy as cp
 import numpy as np
 import argparse as ap
 import time
