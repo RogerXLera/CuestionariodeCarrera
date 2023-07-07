@@ -9,10 +9,6 @@ import argparse as ap
 import time
 import csv
 from definitions import * # classes Skill, Activity, TimePeriod, TimePeriodSequence, Job, User Preference
-from read_file import read_activities,skills_enumeration,topics_enumeration,read_jobs,read_input
-from solve import definitions_generation,model_elements,model_ilp_mixed,solve_problem,job_affinity
-from formalisation import *
-from plots import *
 import streamlit as st
 import pandas as pd
 
@@ -33,7 +29,7 @@ access = False
 wd_ = 'data'
 path_ = os.getcwd()
 
-sur_file_path = os.path.join(path_,wd_,"survey.csv")
+sur_file_path = os.path.join(path_,wd_,"answers.csv")
 
 st.title("Survey answer")
 st.sidebar.title("Database access")

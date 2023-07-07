@@ -54,9 +54,9 @@ def init_tree(dic):
 
 def questionnaire(Q,q_id,question_answer,q_list,j_list):
 
-    if q_id == None:
+    if q_list == None:
         q_id = q_list[0]
-        return q_id,q_list,j_list
+        return q_list,j_list
         
     q_list.remove(q_id)
     
@@ -70,11 +70,11 @@ def questionnaire(Q,q_id,question_answer,q_list,j_list):
         q_list += Q[q_id].predecesor.copy()
 
     if len(q_list) == 0:
-        return None,q_list,j_list
+        return q_list,j_list
     
-    q_id = q_list[0]
-    print(q_id,q_list,j_list)
-    return q_id,q_list,j_list
+    
+    print(q_list,j_list)
+    return q_list,j_list
 
 def generate_link(base_link,id_):
 
@@ -83,6 +83,21 @@ def generate_link(base_link,id_):
         link += f"{id_[:i+1]}/"
 
     return link[:-1]
+
+def submit_results():
+
+    path = os.getcwd()
+    folder = 'data'
+    file_ = 'answers.csv'
+    file_path = os.path.join(path,folder,file_)
+    
+    j_list = st.session_state['j_list'].copy()
+    username = st.session_state['username']
+    with open(file_path,'a') as input_file:
+        writer = csv.writer(input_file)
+        writer.writerow([username,j_list])
+
+    return None
 
 if __name__ == '__main__':
     from read_file import *
