@@ -78,7 +78,7 @@ else:
         for k in range(len(q_list[:3])):
             q_id = q_list[k]
             st.radio(Q[q_id].question, range(3), format_func=lambda x: labels_[x], index= 0, key=f'q_response_{k}')
-            
+            #st.radio(Q[q_id].question, range(3), format_func=lambda x: labels_[x], index= None, key=f'q_response_{k}')
         label_button = "Next question"    
         link_1 = st.button(label_button)
         link_2a = False
@@ -126,9 +126,6 @@ else:
 
         switch_page("Home")
 
-
-    #elif link_2:
-        #switch_page("Jobs")
 
 
 

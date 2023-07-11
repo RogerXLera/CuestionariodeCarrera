@@ -127,9 +127,9 @@ else:
 
 with st.expander("Why do we need your username?"):
     st.write("""
-    The username is collected just to validate that there aren't duplicated answers. 
-    You won't receive any messages from this platform. 
-    Once the data is gathered and analysed, all the private information will be deleted. 
+    We collect your username to validate that there are no duplicated answers. 
+    You will not receive any messages from this platform. 
+    We will delete all private information after we gather and analyse your answers. 
     """)
 
 st.markdown(
