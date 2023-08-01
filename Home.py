@@ -90,7 +90,7 @@ st.write("# Welcome to the Yoma Career Path Questionnaire! 👋 ")
 
 st.markdown(
     """
-    This app aims to suggest and help you a possible career path 
+    This app aims to suggest possible career paths 
     according to your preferences and answers. 
 
     To use the app, follow the next sequence of steps.
