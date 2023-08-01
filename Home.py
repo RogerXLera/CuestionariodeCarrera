@@ -90,7 +90,7 @@ st.write("# Welcome to the Yoma Career Path Questionnaire! 👋 ")
 
 st.markdown(
     """
-    This is a demo page to test the Yoma Career Path Questionnaire! The algorithm aims to suggest and help you a possible career path 
+    This app aims to suggest and help you a possible career path 
     according to your preferences and answers. 
 
     To use the app, follow the next sequence of steps.
