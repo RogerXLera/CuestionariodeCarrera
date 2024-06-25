@@ -12,10 +12,6 @@ import streamlit as st
 import pandas as pd
 
 
-st.set_page_config(
-    page_title="Yoma LP",
-    page_icon="👋",
-)
 def checking_access(user,pw,credentials):
     if user == credentials.username and pw == credentials.password:
         return True

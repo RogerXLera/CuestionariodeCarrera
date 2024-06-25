@@ -12,10 +12,6 @@ from questionnaire import *
 import streamlit as st
 
 
-st.set_page_config(
-    page_title="Yoma LP",
-    page_icon="👋",
-)
 
 def switch_page(page_name: str):
 
@@ -84,20 +80,20 @@ except:
 st.session_state['survey'] = False #survey not answered
 
 #st.write("# Welcome to the Yoma Learning Pathway Recommender! 👋 :trumpet: :doughnut:")
-st.write("# Welcome to the Yoma Career Path Questionnaire! 👋 ")
+st.write("# Bienvenido al Cuestionario de Carrera 👋 ")
 
 #st.sidebar.success("Select a demo above.")
 
 st.markdown(
     """
-    This app aims to suggest possible career paths 
-    according to your preferences and answers. 
+    Te sugerimos distintos campos profesionales segun tus 
+    respuestas y preferencias. 
 
-    To use the app, follow the next sequence of steps.
+    Para usar la app, sigue los siguientes pasos:
 
-        1. Introduce the user name.
-        2. Answer the questionnaire.
-        3. Submit the answers of the questionnaire. 
+        1. Introduce tu nombre.
+        2. Responde a las preguntas.
+        3. Envia tus respuestas. 
     
 """
 )
@@ -105,13 +101,13 @@ st.markdown(
 if 'username' not in st.session_state.keys():
     #user_name = st.text_input("Introduce Goodwall user name.",
     #value="",key='username',placeholder='john_smith')
-    user_name = st.text_input("Introduce Goodwall user name.",
-    value="",placeholder='john_smith')
+    user_name = st.text_input("Introduce tu nombre.",
+    value="",placeholder='John Smith')
 else:
     #user_name = st.text_input("Introduce Goodwall user name.",
     #value=st.session_state['username'],key='username')
-    user_name = st.text_input("Introduce Goodwall user name.",
-    value=st.session_state['username'],placeholder='john_smith')
+    user_name = st.text_input("Introduce tu nombre.",
+    value=st.session_state['username'],placeholder='John Smith')
 
 
 
@@ -119,25 +115,17 @@ else:
 # Display buttons in the same row using columns
 #col1, col2 = st.columns(2)
 if 'username' not in st.session_state.keys():
-    link_1 = st.button("Go to questionnaire.", disabled=True)
+    link_1 = st.button("Ir al cuestionario.", disabled=True)
 elif len(st.session_state['username']) == 0:
-    link_1 = st.button("Go to questionnaire.", disabled=True)
+    link_1 = st.button("Ir al cuestionario.", disabled=True)
 else:
-    link_1 = st.button("Go to questionnaire.",disabled=False)
-
-with st.expander("Why do we need your username?"):
-    st.write("""
-    We collect your username to validate that there are no duplicated answers. 
-    You will not receive any messages from this platform. 
-    We will delete all private information after we gather and analyse your answers. 
-    """)
+    link_1 = st.button("Ir al cuestionario.",disabled=False)
 
 st.markdown(
     """
-    ### Want to learn more about Yoma?
-    - Check out [Yoma](https://www.yoma.africa/)
-    - Create your Yoma [profile](https://app.yoma.africa/)
-    - Jump into our [opportunities](https://app.yoma.africa/opportunities) offer. 
+    ### ¿Quieres saber más de los distintos campos profesionales?
+    - Comprueba [ANZSCO](https://www.abs.gov.au/statistics/classifications/anzsco-australian-and-new-zealand-standard-classification-occupations/2022/browse-classification/)
+    - Comprueba [ESCO](https://esco.ec.europa.eu/en/classification)
 """
 )
 if 'username' not in st.session_state.keys():

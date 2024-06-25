@@ -91,6 +91,28 @@ def read_questions(file_path):
 
     return Q
 
+def read_questions_dict():
+    
+    filename = 'data/questions_dict.json'
+    filepath = os.path.join(os.getcwd(),filename)
+    f = open(filepath)
+    dict_ = json.load(f)
+    new_dict = {int(k):v for k,v in dict_.items()}
+    f.close()
+
+    return new_dict
+
+def read_jobs_dict():
+    
+    filename = 'data/anzsco_job_dict.json'
+    filepath = os.path.join(os.getcwd(),filename)
+    f = open(filepath)
+    dict_ = json.load(f)
+    f.close()
+
+    return dict_
+    
+
 if __name__ == '__main__':
 
     wd_ = 'data'
@@ -108,5 +130,14 @@ if __name__ == '__main__':
     file_path = os.path.join(os.getcwd(),wd_,file_)
     Q = read_questions(file_path)
     for q in Q.keys():
+        print(type(q))
         print(Q[q])
         print(Q[q].predecesor)
+
+    for j in J.keys():
+        print(type(j))
+        break
+
+
+    q_dict = read_questions_dict()
+    j_dict = read_jobs_dict()
