@@ -16,7 +16,7 @@ import streamlit as st
 def switch_page(page_name: str):
 
     from streamlit.runtime.scriptrunner import RerunData,RerunException
-    #from streamlit import _RerunData, _RerunException
+    #from streamlit import _RerunData, _RerunException experimental_rerun
     #from streamlit.source_util import get_pages
 
     def standardize_name(name: str) -> str:
@@ -132,7 +132,7 @@ if 'username' not in st.session_state.keys():
     st.session_state['username'] = user_name
 elif st.session_state['username'] != user_name:
     st.session_state['username'] = user_name
-    st.experimental_rerun()
+    st.rerun()
 
 
 if link_1:

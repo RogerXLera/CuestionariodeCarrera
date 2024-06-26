@@ -69,7 +69,7 @@ elif len(st.session_state['username']) == 0:
     value="",placeholder='John Smith')
     if st.session_state['username'] != user_name:
         st.session_state['username'] = user_name
-        st.experimental_rerun()
+        st.rerun()
 
 else:
     head1,head2 = st.columns(2)
@@ -106,7 +106,7 @@ else:
             st.session_state['q_response'] = []
             st.session_state['q_list'] = Q[0].predecesor.copy()
             link_1 = False
-            st.experimental_rerun()
+            st.rerun()
         
         q_list_old = q_list[:3].copy()
         for k in range(len(q_list_old)):
@@ -117,13 +117,13 @@ else:
         st.session_state['q_list'] = q_list_new
         st.session_state['j_list'] = j_list_new
         link_1 = False
-        st.experimental_rerun()
+        st.rerun()
 
     elif link_2a:
         st.session_state['q_list'] = Q[0].predecesor.copy()
         st.session_state['j_list'] = []
         link_1 = False
-        st.experimental_rerun()
+        st.rerun()
     elif link_2b:
         submit_results()
         with st.balloons():
