@@ -56,11 +56,13 @@ try:
     j_tree = st.session_state['job_tree']
     q_list = st.session_state['q_list']
     j_list = st.session_state['j_list']
+    degrees_dict = st.session_state['degrees_dict']
     
     
 except:
     J = read_jobs_a(job_file_path)
     Q = read_questions(q_file_path)
+    degrees_dict = read_degrees_dict()
     q_id = 1
     q_response = 0
     j_tree = job_tree(J)
@@ -74,6 +76,8 @@ except:
     st.session_state['q_list'] = q_list
     st.session_state['j_list'] = j_list
     st.session_state['job_tree'] = j_tree
+    st.session_state['degrees_dict'] = degrees_dict
+
 
     
 
@@ -99,24 +103,15 @@ st.markdown(
 )
 
 if 'username' not in st.session_state.keys():
-    #user_name = st.text_input("Introduce Goodwall user name.",
-    #value="",key='username',placeholder='john_smith')
-    user_name = st.text_input("Introduce tu nombre.",
-    value="",placeholder='John Smith')
-else:
-    #user_name = st.text_input("Introduce Goodwall user name.",
-    #value=st.session_state['username'],key='username')
-    user_name = st.text_input("Introduce tu nombre.",
-    value=st.session_state['username'],placeholder='John Smith')
+    st.session_state.username = ''
+
+un = st.text_input("Introduce tu nombre.", value=st.session_state.username, 
+                   placeholder='John Smith')
+
+st.session_state.username = un
 
 
-
-#st.markdown(f"Do you know your desired career role?")
-# Display buttons in the same row using columns
-#col1, col2 = st.columns(2)
-if 'username' not in st.session_state.keys():
-    link_1 = st.button("Ir al cuestionario.", disabled=True)
-elif len(st.session_state['username']) == 0:
+if len(st.session_state.username) == 0:
     link_1 = st.button("Ir al cuestionario.", disabled=True)
 else:
     link_1 = st.button("Ir al cuestionario.",disabled=False)
@@ -128,17 +123,10 @@ st.markdown(
     - Comprueba [ESCO](https://esco.ec.europa.eu/en/classification)
 """
 )
-if 'username' not in st.session_state.keys():
-    st.session_state['username'] = user_name
-elif st.session_state['username'] != user_name:
-    st.session_state['username'] = user_name
-    st.rerun()
 
 
 if link_1:
     switch_page("Questionnaire")
-#elif link_2:
-    #switch_page("Jobs")
 
     
 

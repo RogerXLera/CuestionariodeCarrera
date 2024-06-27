@@ -111,6 +111,16 @@ def read_jobs_dict():
     f.close()
 
     return dict_
+
+def read_degrees_dict():
+    
+    filename = 'data/degrees.json'
+    filepath = os.path.join(os.getcwd(),filename)
+    f = open(filepath)
+    dict_ = json.load(f)
+    f.close()
+
+    return dict_
     
 
 if __name__ == '__main__':

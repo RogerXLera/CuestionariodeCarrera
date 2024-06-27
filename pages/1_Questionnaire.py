@@ -31,13 +31,13 @@ try:
     j_list = st.session_state['j_list']
     q_dict = st.session_state['q_dict']
     j_dict = st.session_state['j_dict']
-    
-    
+    degrees_dict = st.session_state['degrees_dict']
 except:
     J = read_jobs_a(job_file_path)
     Q = read_questions(q_file_path)
     q_dict = read_questions_dict()
     j_dict = read_jobs_dict()
+    degrees_dict = read_degrees_dict()
     q_response = []
     j_tree = job_tree(J)
     q_list = Q[0].predecesor.copy()
@@ -51,32 +51,30 @@ except:
     st.session_state['q_dict'] = q_dict
     st.session_state['j_dict'] = j_dict
     st.session_state['job_tree'] = j_tree
+    st.session_state['degrees_dict'] = degrees_dict
 
 labels_ = ["No","Un poco","Si"]
 base_link = "https://www.abs.gov.au/statistics/classifications/anzsco-australian-and-new-zealand-standard-classification-occupations/2022/browse-classification/"
 
-
 if 'username' not in st.session_state.keys():
-    st.write("Introduce tu nombre.")
-    user_name = st.text_input("Introduce tu nombre.",
-    value="",placeholder='John Smith')
-    st.session_state['username'] = user_name
+    st.session_state['username'] = ''
     
 
-elif len(st.session_state['username']) == 0:
-    st.write("Debes introducir tu nombre.")
-    user_name = st.text_input("Debes introducir tu nombre.",
-    value="",placeholder='John Smith')
+if len(st.session_state['username']) == 0:
+    st.write("Introduce tu nombre.")
+    user_name = st.text_input("Introduce tu nombre.",
+    value=st.session_state['username'],placeholder='John Smith')
+    
     if st.session_state['username'] != user_name:
         st.session_state['username'] = user_name
         st.rerun()
 
 else:
-    head1,head2 = st.columns(2)
-    head2.subheader(f"Usuario: {st.session_state['username']}")
+    
+    st.subheader(f"Usuario: {st.session_state['username']}")
     
     if len(q_list) > 0:
-        head1.subheader("Preguntas")
+        st.subheader("Preguntas")
         for k in range(len(q_list[:3])):
             q_id = q_list[k]
             st.radio(q_dict[q_id], range(3), format_func=lambda x: labels_[x], index= 0, key=f'q_response_{k}')
@@ -87,19 +85,37 @@ else:
         link_2b = False
 
     else:
-        head1.subheader("Campos")
-        #f"The fields selected according to your answers are the following."
-        f"Recomendación de sectores laborales según tus respuestas."
-        for i in range(len(j_list)):
-            j_id = j_list[i]
-            link = generate_link(base_link,j_id)
-            #st.write(f"{i+1}. [{J[j_id].name}]({link})")
-            st.write(f"{i+1}. [{j_dict[j_id]}]({link})")
+
+        tab1, tab2 = st.tabs(["Sectores Laborales", "Grados Universitarios"])
+        with tab1:
+            st.subheader("Sectores Laborales")
+            #f"The fields selected according to your answers are the following."
+            f"Recomendación de sectores laborales según tus respuestas."
+            for i in range(len(j_list)):
+                j_id = j_list[i]
+                link = generate_link(base_link,j_id)
+                #st.write(f"{i+1}. [{J[j_id].name}]({link})")
+                st.write(f"{i+1}. [{j_dict[j_id]}]({link})")
+
+        with tab2:
+            st.subheader("Grados Universitarios")
+            #f"The fields selected according to your answers are the following."
+            f"Recomendación de grados universitarios según tus respuestas."
+            degrees_list = []
+            for i in range(len(j_list)):
+                j_id = j_list[i]
+                degrees_list += degrees_dict[j_id]
+
+            for i in range(len(degrees_list)):
+                #st.write(f"{i+1}. [{J[j_id].name}]({link})")
+                st.write(f"{i+1}. {degrees_list[i]}")
 
         col1,col2 = st.columns(2)
         link_1 = False
         link_2a = col1.button("Prueba Otra Vez")
         link_2b = col2.button("Envia")
+
+        
 
     if link_1:
         if len(q_list) == 0:
