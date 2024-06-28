@@ -106,6 +106,7 @@ else:
                 j_id = j_list[i]
                 degrees_list += degrees_dict[j_id]
 
+            degrees_list = list(set(degrees_list))
             for i in range(len(degrees_list)):
                 #st.write(f"{i+1}. [{J[j_id].name}]({link})")
                 st.write(f"{i+1}. {degrees_list[i]}")
